@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} addpost {% endblock %}
+{% block content %}
+<style>
+    /* Custom spacing for table rows */
+    .row-spacing {
+        margin-top: 2rem; /* Adjust the spacing as needed */
+    }
+</style>
+<div class="container container-flex">
+    <main role="main">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table table-borderless">
+                <tr class="row-spacing">
+                    <td>Title:</td>
+                    <td><input type="text" name="head" class="form-control" placeholder="Enter post title" required></td>
+                </tr>
+                <tr class="row-spacing">
+                    <td>Description:</td>
+                    <td><textarea name="description" class="form-control" rows="4" placeholder="Enter post description" required></textarea></td>
+                </tr>
+                <tr class="row-spacing">
+                    <td>Image:</td>
+                    <td><input type="file" name="images" class="form-control-file" id="fileInput" required></td>
+                </tr>
+                <tr class="row-spacing">
+                    <td></td>
+                    <td><input type="submit" value="Submit" class="btn btn-primary mt-2"></td>
+                </tr>
+            </table>
+            <div class="mt-3" style="color: green;">{{ msg }}</div>
+        </form>
+</main>
+<aside class="sidebar">
+                    
+    <div class="sidebar-widget">
+        <h2 class="widget-title">RECENT POSTS</h2>
+        <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">Keeping cooking simple</h3>
+            <img src="{% static 'img/food.jpg' %}" alt="two dumplings on a wood plate with chopsticks" class="widget-image">
+        </div>
+        <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">Simplicity and work</h3>
+            <img src="{% static 'img/work.jpg' %}" alt="a chair white chair at a white desk on a white wall" class="widget-image">
+        </div>
+        <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">Simple decorations</h3>
+            <img src="{% static 'img/deco.jpg' %}" alt="a green plant in a clear, round vase with water in it" class="widget-image">
+        </div>
+    </div>               
+</aside>  
+</div>
+{% endblock %}

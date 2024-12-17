@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Article Detail {% endblock %}
+{% block content %}
+<div class="container container-flex">
+    <main role="main">
+        <div class="article-detail">
+            <h1>{{ article.head }}</h1>
+            <img src="{{ article.images.url }}" alt="Article image" class="article-image">
+            <p>{{ article.description }}</p>
+            <p>Published on: {{ article.created_at|date:"F j, Y" }}</p>
+            
+            <!-- Update and Delete Buttons -->
+            <div class="button-group mb-4">
+                <a href="{% url 'article_update' article.id %}" class="btn btn-update btn-success">Update</a>
+                <form action="{% url 'article_delete' article.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-delete btn-danger">
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} index {% endblock %}
+{% block content %}
+ 
+<div class="container container-flex">
+    <main role="main">
+        
+        <article class="article-featured">
+            <img src="{% static 'img/life.jpg' %}" alt="simple white desk on a white wall with a plant on the far right side" class="article-image">
+        </article>
+        
+        {% for i in add %}
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2 class="article-title">{{ i.head }}</h2>
+                <p class="article-body">{{ i.description }}</p>
+                <a href="{% url 'article_detail' i.id %}" class="article-read-more">CONTINUE READING</a>
+            </div>
+            <div class="article-recent-secondary">
+                {% if i.images %}
+                    <img src="{{ i.images.url }}" alt="{{ i.head }}" class="article-image">
+                {% else %}
+                    <img src="{% static 'img/default.jpg' %}" alt="Default Image" class="article-image">
+                {% endif %}
+                <p class="article-info">July 12, 2019 | 3 comments</p>
+            </div>
+        </article>
+        {% endfor %}
+    </main>   
+    <aside class="sidebar">
+        
+        <div class="sidebar-widget">
+            <h2 class="widget-title">ABOUT ME</h2>
+            <img src="{% static 'img/about-me.jpg' %}" alt="john doe" class="widget-image">
+            <p class="widget-body">I find life better, and I'm happier, when things are nice and simple.</p>
+        </div>       
+    </aside>
+    
+</div>
+{% endblock %}
